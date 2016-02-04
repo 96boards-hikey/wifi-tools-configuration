@@ -1,0 +1,33 @@
+#                            \\\// 
+#                           -(o o)- 
+#========================oOO==(_)==OOo=======================
+# This file contains the exports needed for automating the
+# build process of WLAN components.
+# Place this file in the same directory with wl18xx_build.sh
+# build scripts. No need to run 'source setup-env', the build
+# scripts will perfom it internaly. 
+#===========================================================
+# User specific environment settings - use full PATH
+
+# if DEFAULT toolchain path is set toolchain will be downloaded to ./toolchain.
+export TOOLCHAIN_PATH=/home/docularxu/bin/toolchains/arm64-tc/bin
+
+# if DEFAULT path to root filesystem is set ./fs folder will be used.
+export ROOTFS=DEFAULT
+
+#if DEFAULT kernel path is set - kernel will be downloaded (set branch to match kernel version)
+export KERNEL_PATH=/home/docularxu/Huawei/v8r2/v8r2-kernel
+
+# if KERNEL_VARIANT below is set the build script will look for kernel specific
+# patches under the patches directory:
+# - patches under the pathces/driver_patches/$KERNEL_VARIANT directory would be
+#   applied during "modules" build.
+# - patches under the patches/kernel_patches/$/$KERNEL_VARIANT directory would
+#   be applied to the kernel pointed by KERNEL_PATH in case the "patch_kernel"
+#   command is used.
+#   Note: the kernel is not built automatically after the patches are applied
+export KERNEL_VARIANT=DEFAULT
+
+export CROSS_COMPILE=aarch64-linux-gnu-
+export ARCH=arm64
+[ "$TOOLCHAIN_PATH" != "DEFAULT" ] && export PATH=$TOOLCHAIN_PATH:$PATH
